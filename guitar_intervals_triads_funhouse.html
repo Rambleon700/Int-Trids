@@ -1,0 +1,964 @@
+<!DOCTYPE1 html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Intervals Funhouse for Kids!</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for childish, playful typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        candyPink: '#FF6B8B',
+                        sunGold: '#FFB800',
+                        frogGreen: '#4ECDC4',
+                        skyBlue: '#45B7D1',
+                        purpleMonster: '#9B51E0',
+                        cookieBrown: '#D4A373'
+                    },
+                    boxShadow: {
+                        pop: '0px 8px 0px 0px rgba(0,0,0,0.15)',
+                        'pop-sm': '0px 4px 0px 0px rgba(0,0,0,0.15)',
+                        'pop-lg': '0px 12px 0px 0px rgba(0,0,0,0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFF9F2;
+        }
+        h1, h2, h3, h4, .font-fun {
+            font-family: 'Fredoka', cursive;
+        }
+        .bouncy-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bouncy-active:active {
+            transform: translateY(2px) scale(0.98);
+        }
+        /* Fretboard custom styling */
+        .fret {
+            border-right: 4px solid #C4A484;
+            position: relative;
+        }
+        .fret:last-child {
+            border-right: none;
+        }
+        .fret-marker {
+            width: 14px;
+            height: 14px;
+            background-color: #E2E8F0;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .guitar-string {
+            height: 6px;
+            background: linear-gradient(90deg, #94A3B8, #CBD5E1);
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        @keyframes hopAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        .animate-hop {
+            animation: hopAnim 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-slate-800 pb-20 selection:bg-candypink selection:text-white">
+
+    <!-- TOP HEADER / HERO SECTION -->
+    <header class="bg-amber-300 border-b-8 border-amber-400 pt-6 pb-8 px-4 relative overflow-hidden text-center">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <span class="bg-white text-candyPink font-fun px-6 py-2 rounded-full text-lg shadow-pop-sm inline-block mb-3 animate-bounce">
+                🎸 Guitar Funhouse for Little Musicians! 🎵
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-wide mb-2">
+                Guitar <span class="text-candyPink underline decoration-wavy decoration-purpleMonster">Intervals</span> & <span class="text-frogGreen underline decoration-wavy decoration-skyBlue">Triad Cakes</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-800 font-semibold max-w-2xl mx-auto">
+                Discover the secret music recipes hidden inside your guitar strings!
+            </p>
+        </div>
+
+        <!-- Floating Decorative Icons -->
+        <i class="fa-solid fa-music text-amber-500 text-6xl absolute top-6 left-8 opacity-40 rotate-12"></i>
+        <i class="fa-solid fa-guitar text-candyPink text-7xl absolute bottom-2 right-8 opacity-40 -rotate-12"></i>
+        <i class="fa-solid fa-star text-purpleMonster text-5xl absolute top-12 right-1/4 opacity-40"></i>
+    </header>
+
+    <!-- MAIN PAGE TABS (PAGE 1 vs PAGE 2 TOGGLE) -->
+    <div class="bg-slate-900 py-3 px-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-3xl mx-auto flex justify-center gap-3 font-fun text-base md:text-lg">
+            <button id="tab-page1" onclick="switchPage(1)" class="flex-1 max-w-xs bg-candyPink text-white py-2.5 px-4 rounded-2xl shadow-pop-sm border-2 border-white/20 transition-all text-center">
+                📄 Page 1: Intervals 🐸
+            </button>
+            <button id="tab-page2" onclick="switchPage(2)" class="flex-1 max-w-xs bg-slate-700 hover:bg-slate-600 text-slate-200 py-2.5 px-4 rounded-2xl border-2 border-transparent transition-all text-center">
+                🍰 Page 2: Triads & Open Chords 🍦
+            </button>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- PAGE 1 CONTENT: INTERVALS -->
+    <!-- =================================================================== -->
+    <div id="page-1" class="space-y-12 max-w-4xl mx-auto px-4 mt-8">
+        <!-- Sub-navigation for Page 1 -->
+        <nav class="bg-white/90 backdrop-blur-md rounded-2xl p-2 border-2 border-slate-200 shadow-sm">
+            <div class="flex flex-wrap justify-center gap-2 font-fun text-xs md:text-sm">
+                <a href="#what-is" class="bg-candypink/10 hover:bg-candyPink text-candyPink hover:text-white px-3 py-1.5 rounded-xl transition-all">1. Frog Hops 🐸</a>
+                <a href="#fretboard-lab" class="bg-skyBlue/10 hover:bg-skyBlue text-skyBlue hover:text-white px-3 py-1.5 rounded-xl transition-all">2. Fretboard Lab 🔬</a>
+                <a href="#magic-string" class="bg-purpleMonster/10 hover:bg-purpleMonster text-purpleMonster hover:text-white px-3 py-1.5 rounded-xl transition-all">3. Magic String 🪄</a>
+                <a href="#cake-recipes" class="bg-sunGold/10 hover:bg-sunGold text-amber-900 hover:text-white px-3 py-1.5 rounded-xl transition-all">4. Recipe Box 🍰</a>
+                <a href="#roadmap" class="bg-frogGreen/10 hover:bg-frogGreen text-teal-800 hover:text-white px-3 py-1.5 rounded-xl transition-all">5. Quest Map 🗺️</a>
+            </div>
+        </nav>
+
+        <!-- SECTION 1: WHAT IS AN INTERVAL? -->
+        <section id="what-is" class="bg-white rounded-3xl p-6 md:p-8 border-4 border-skyBlue shadow-pop relative overflow-hidden">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-skyBlue text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">1</div>
+                <h2 class="text-3xl font-bold text-slate-800">What is an Interval? (Frog Hop Time!)</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div class="space-y-4 text-lg">
+                    <p class="leading-relaxed">
+                        Imagine your guitar neck is a stream of <strong>stepping stones</strong> called <span class="bg-amber-200 px-2 py-0.5 rounded-md font-bold">Frets</span>! 🪨
+                    </p>
+                    <p class="leading-relaxed">
+                        An <strong>Interval</strong> is just the distance a little frog leaps between two musical sound stones!
+                    </p>
+                    <div class="bg-sky-50 border-l-4 border-skyBlue p-4 rounded-r-2xl">
+                        <p class="font-bold text-sky-900 text-base">
+                            💡 Short Hop = Close Sound (1 or 2 frets)<br>
+                            🚀 Big Hop = Faraway Sound (5 or 7 frets)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Frog Hop Visualizer Card -->
+                <div class="bg-gradient-to-br from-green-100 to-emerald-200 rounded-2xl p-6 border-4 border-emerald-300 text-center shadow-inner">
+                    <div class="text-xs font-bold text-emerald-800 uppercase tracking-widest mb-2">Interactive Hop Demo</div>
+                    <div id="frog-display" class="text-6xl my-4 transition-all duration-300">🐸</div>
+                    <p id="hop-text" class="font-fun text-xl text-emerald-900 font-bold mb-4">Click below to make Freddie hop!</p>
+                    
+                    <div class="flex justify-center gap-2">
+                        <button onclick="playHopAnimation(1)" class="bg-frogGreen hover:bg-teal-500 text-white font-fun px-4 py-2 rounded-xl border-b-4 border-teal-700 shadow-pop-sm bouncy-hover bouncy-active text-sm">
+                            Hop 1 Fret (Half-Step)
+                        </button>
+                        <button onclick="playHopAnimation(4)" class="bg-candyPink hover:bg-pink-600 text-white font-fun px-4 py-2 rounded-xl border-b-4 border-pink-800 shadow-pop-sm bouncy-hover bouncy-active text-sm">
+                            Jump 4 Frets (Major 3rd)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTERACTIVE FRETBOARD LAB -->
+        <section id="fretboard-lab" class="bg-white rounded-3xl p-6 md:p-8 border-4 border-candyPink shadow-pop">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-candyPink text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">2</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800">The Fretboard Playground</h2>
+                    <p class="text-slate-600 font-medium">Click any two frets on the guitar string to measure the interval!</p>
+                </div>
+            </div>
+
+            <!-- Fretboard Control Buttons -->
+            <div class="flex flex-wrap gap-2 mb-6">
+                <button onclick="presetInterval(0, 4)" class="bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-1.5 rounded-xl border-2 border-amber-300 text-sm bouncy-hover">
+                    🐱 Major 3rd (4 Frets)
+                </button>
+                <button onclick="presetInterval(0, 7)" class="bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold px-3 py-1.5 rounded-xl border-2 border-purple-300 text-sm bouncy-hover">
+                    🚀 Perfect 5th (7 Frets)
+                </button>
+                <button onclick="presetInterval(0, 12)" class="bg-sky-100 hover:bg-sky-200 text-sky-900 font-bold px-3 py-1.5 rounded-xl border-2 border-sky-300 text-sm bouncy-hover">
+                    🌈 Octave Twins (12 Frets)
+                </button>
+                <button onclick="clearFretboard()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-xl border-2 border-slate-300 text-sm ml-auto">
+                    🧹 Reset
+                </button>
+            </div>
+
+            <!-- Visual Fretboard -->
+            <div class="bg-amber-50 rounded-2xl p-4 md:p-6 border-4 border-amber-200 overflow-x-auto mb-6 shadow-inner">
+                <div class="min-w-[650px]">
+                    <!-- String Labels & Line -->
+                    <div class="text-xs font-bold text-amber-800 mb-2 flex justify-between">
+                        <span>NUT (Fret 0)</span>
+                        <span>FRET 3</span>
+                        <span>FRET 5</span>
+                        <span>FRET 7</span>
+                        <span>FRET 9</span>
+                        <span>FRET 12</span>
+                    </div>
+
+                    <div class="relative py-8 my-2 bg-gradient-to-r from-amber-100 to-amber-200 rounded-xl border-t-2 border-b-2 border-amber-300">
+                        <!-- Guitar String -->
+                        <div class="guitar-string w-full absolute top-1/2 left-0 -translate-y-1/2"></div>
+                        
+                        <!-- Frets 0 to 12 -->
+                        <div class="grid grid-cols-13 absolute inset-0 z-10" id="fret-grid">
+                            <!-- JS dynamically injects 0..12 fret buttons -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio & Information Display Panel -->
+            <div id="interval-result" class="bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-4 text-center">
+                <p class="text-slate-500 font-fun text-lg">👇 Tap two frets above to hear the interval and count the hops!</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE SECRET G-TO-B MAGIC STRING EXCEPTION -->
+        <section id="magic-string" class="bg-white rounded-3xl p-6 md:p-8 border-4 border-purpleMonster shadow-pop relative">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-purpleMonster text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">3</div>
+                <h2 class="text-3xl font-bold text-slate-800">The Secret Magic String! 🪄</h2>
+            </div>
+
+            <div class="space-y-4 text-lg">
+                <p class="leading-relaxed">
+                    Normally, when you hop down to the next string on a guitar, it counts as <strong>5 frets distance</strong>. It's like taking a giant teleportation leap!
+                </p>
+
+                <!-- Interactive String Hop Comparison -->
+                <div class="grid md:grid-cols-2 gap-4 my-6">
+                    <!-- Normal Rule Card -->
+                    <div class="bg-sky-50 border-3 border-skyBlue p-5 rounded-2xl text-center">
+                        <div class="text-3xl mb-2">📏 Normal String Jump</div>
+                        <p class="font-fun text-xl text-sky-900 font-bold mb-2">5 Steps High!</p>
+                        <p class="text-sm text-slate-600">Jumping from E string to A string, or A to D, or D to G always equals a <strong>5-fret hop</strong>!</p>
+                        <button onclick="playMagicSound(5)" class="mt-4 bg-skyBlue text-white font-fun px-4 py-2 rounded-xl text-sm border-b-4 border-sky-700 shadow-pop-sm bouncy-hover">
+                            🔊 Play 5-Step Normal Jump
+                        </button>
+                    </div>
+
+                    <!-- Magic Exception Card -->
+                    <div class="bg-purple-50 border-3 border-purpleMonster p-5 rounded-2xl text-center relative overflow-hidden">
+                        <span class="absolute top-2 right-2 bg-purpleMonster text-white text-xs font-bold px-2 py-0.5 rounded-full">SPECIAL!</span>
+                        <div class="text-3xl mb-2">🦄 Magic G to B Jump</div>
+                        <p class="font-fun text-xl text-purple-900 font-bold mb-2">Only 4 Steps!</p>
+                        <p class="text-sm text-slate-600">The <strong>G string to B string</strong> is sneaky! It only takes <strong>4 fret hops</strong> to make the leap!</p>
+                        <button onclick="playMagicSound(4)" class="mt-4 bg-purpleMonster text-white font-fun px-4 py-2 rounded-xl text-sm border-b-4 border-purple-900 shadow-pop-sm bouncy-hover">
+                            ✨ Play 4-Step Magic Jump
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CHORD CAKE RECIPES -->
+        <section id="cake-recipes" class="bg-white rounded-3xl p-6 md:p-8 border-4 border-sunGold shadow-pop">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-sunGold text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">4</div>
+                <h2 class="text-3xl font-bold text-slate-800">Building Chords = Baking Cake Recipes! 🍰</h2>
+            </div>
+
+            <p class="text-lg leading-relaxed mb-6">
+                Single intervals are tasty ingredients. But when you stack them together, you bake a full <strong>CHORD CAKE</strong>!
+            </p>
+
+            <!-- Cake Builder Interactive Widget -->
+            <div class="bg-amber-50 rounded-2xl p-6 border-4 border-amber-200 text-center">
+                <h3 class="font-fun text-2xl text-amber-900 mb-2">Bake a Happy Major Cake! 🎂</h3>
+                <p class="text-sm text-amber-800 mb-6">Click ingredients one by one to stack your chord cake:</p>
+
+                <!-- Cake Visual Display -->
+                <div class="w-48 mx-auto space-y-2 mb-6 flex flex-col items-center">
+                    <!-- Layer 3: Perfect 5th -->
+                    <div id="layer-5th" class="w-full bg-slate-200 text-slate-400 py-3 rounded-xl border-2 border-dashed border-slate-300 font-fun text-sm transition-all duration-300">
+                        🔒 Lock: Add Perfect 5th (7 Frets)
+                    </div>
+                    <!-- Layer 2: Major 3rd -->
+                    <div id="layer-3rd" class="w-3/4 bg-slate-200 text-slate-400 py-3 rounded-xl border-2 border-dashed border-slate-300 font-fun text-sm transition-all duration-300">
+                        🔒 Lock: Add Major 3rd (4 Frets)
+                    </div>
+                    <!-- Layer 1: Root Base -->
+                    <div id="layer-root" class="w-full bg-amber-800 text-amber-100 py-3 rounded-xl border-2 border-amber-900 font-fun text-sm shadow-pop-sm">
+                        🎂 Base: Root Note (Fret 0)
+                    </div>
+                </div>
+
+                <!-- Ingredient Buttons -->
+                <div class="flex justify-center gap-3">
+                    <button id="btn-add-3rd" onclick="addCakeIngredient('3rd')" class="bg-candyPink hover:bg-pink-600 text-white font-fun px-4 py-2.5 rounded-xl border-b-4 border-pink-800 shadow-pop-sm bouncy-hover">
+                        🍓 Add Major 3rd (Sweet flavor!)
+                    </button>
+                    <button id="btn-add-5th" onclick="addCakeIngredient('5th')" disabled class="bg-skyBlue opacity-50 cursor-not-allowed text-white font-fun px-4 py-2.5 rounded-xl border-b-4 border-sky-800 shadow-pop-sm">
+                        🫐 Add Perfect 5th (Strong topping!)
+                    </button>
+                    <button onclick="resetCake()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-fun px-3 py-2 rounded-xl text-sm">
+                        🔄 Bake New Cake
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: 4-STEP LEVEL ROADMAP -->
+        <section id="roadmap" class="bg-white rounded-3xl p-6 md:p-8 border-4 border-frogGreen shadow-pop">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-frogGreen text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">5</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800">Your 4-Level Guitar Quest Map</h2>
+                    <p class="text-slate-600 font-medium">Master intervals step-by-step like a video game hero!</p>
+                </div>
+            </div>
+
+            <!-- Grid of 4 Levels -->
+            <div class="grid md:grid-cols-2 gap-4">
+                
+                <!-- Level 1 -->
+                <div class="bg-emerald-50 rounded-2xl p-5 border-3 border-emerald-300 hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-emerald-500 text-white font-fun text-xs px-3 py-1 rounded-full uppercase">Level 1</span>
+                        <span class="text-2xl">🌱</span>
+                    </div>
+                    <h3 class="font-fun text-xl text-emerald-950 mb-1">Starter Pack</h3>
+                    <p class="text-sm text-slate-600">Learn the most common building blocks first!</p>
+                    <ul class="mt-3 text-xs space-y-1 font-semibold text-emerald-900">
+                        <li>• Major 3rd (4 frets - Happy sound 😊)</li>
+                        <li>• Minor 3rd (3 frets - Sad sound 😢)</li>
+                        <li>• Perfect 5th (7 frets - Power sound ⚡)</li>
+                    </ul>
+                </div>
+
+                <!-- Level 2 -->
+                <div class="bg-sky-50 rounded-2xl p-5 border-3 border-sky-300 hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-sky-500 text-white font-fun text-xs px-3 py-1 rounded-full uppercase">Level 2</span>
+                        <span class="text-2xl">🎷</span>
+                    </div>
+                    <h3 class="font-fun text-xl text-sky-950 mb-1">Seventh Sounds</h3>
+                    <p class="text-sm text-slate-600">Add smooth jazzy spice to your music!</p>
+                    <ul class="mt-3 text-xs space-y-1 font-semibold text-sky-900">
+                        <li>• Major 7th (11 frets - Dreamy ☁️)</li>
+                        <li>• Minor 7th (10 frets - Bluesy 😎)</li>
+                        <li>• Octave Twins (12 frets - Same note high 🏔️)</li>
+                    </ul>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="bg-purple-50 rounded-2xl p-5 border-3 border-purple-300 hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-purple-500 text-white font-fun text-xs px-3 py-1 rounded-full uppercase">Level 3</span>
+                        <span class="text-2xl">🎨</span>
+                    </div>
+                    <h3 class="font-fun text-xl text-purple-950 mb-1">Melody Builders</h3>
+                    <p class="text-sm text-slate-600">Fill in the gaps to play any tune by ear!</p>
+                    <ul class="mt-3 text-xs space-y-1 font-semibold text-purple-900">
+                        <li>• Major 2nd & Minor 2nd (Little hops 🐥)</li>
+                        <li>• Perfect 4th (5 frets - "Here Comes the Bride")</li>
+                        <li>• Major 6th & Minor 6th (Sweet leaps 🍭)</li>
+                    </ul>
+                </div>
+
+                <!-- Level 4 -->
+                <div class="bg-amber-50 rounded-2xl p-5 border-3 border-amber-300 hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-amber-500 text-white font-fun text-xs px-3 py-1 rounded-full uppercase">Level 4</span>
+                        <span class="text-2xl">👑</span>
+                    </div>
+                    <h3 class="font-fun text-xl text-amber-950 mb-1">Master Musician</h3>
+                    <p class="text-sm text-slate-600">Unlock spicy rare intervals!</p>
+                    <ul class="mt-3 text-xs space-y-1 font-semibold text-amber-900">
+                        <li>• The Tritonus / Diminished 5th (6 frets - Mystery & spooky 👻)</li>
+                        <li>• All 12 intervals fully mastered! 🏆</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 6: FUN KIDS QUIZ -->
+        <section class="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl p-6 md:p-8 text-white shadow-pop">
+            <div class="text-center max-w-xl mx-auto space-y-4">
+                <span class="bg-white/20 text-white text-xs font-fun px-4 py-1 rounded-full uppercase">Pop Quiz Challenge</span>
+                <h2 class="text-3xl font-bold font-fun">Can You Solve the Guitar Riddle? 🤔</h2>
+                <p id="quiz-question" class="text-lg font-medium">If you place your finger on Fret 0 and hop <strong>4 frets forward</strong>, what interval flavor did you make?</p>
+                
+                <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                    <button onclick="checkQuiz(false, this)" class="bg-white text-slate-800 font-fun py-3 px-4 rounded-xl shadow-pop-sm hover:bg-amber-100 transition-all text-base">
+                        😢 Minor 3rd (Sad Sound)
+                    </button>
+                    <button onclick="checkQuiz(true, this)" class="bg-white text-slate-800 font-fun py-3 px-4 rounded-xl shadow-pop-sm hover:bg-amber-100 transition-all text-base">
+                        😊 Major 3rd (Happy Cake Sound!)
+                    </button>
+                </div>
+
+                <div id="quiz-feedback" class="hidden mt-4 p-3 rounded-xl bg-white/20 font-fun text-lg animate-bounce"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- PAGE 2 CONTENT: TRIADS & OPEN CHORDS -->
+    <!-- =================================================================== -->
+    <div id="page-2" class="hidden space-y-12 max-w-4xl mx-auto px-4 mt-8">
+
+        <!-- TRIADS INTRO HERO -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 border-4 border-frogGreen shadow-pop">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-frogGreen text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">🍨</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800">What is a Triad?</h2>
+                    <p class="text-slate-600 font-medium">It's a 3-Scoop Ice Cream Sundae made of note intervals!</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div class="space-y-4 text-lg">
+                    <p class="leading-relaxed">
+                        The word <strong>TRI</strong> means <strong>THREE</strong> (like a tricycle with 3 wheels 🚲)!
+                    </p>
+                    <p class="leading-relaxed">
+                        A <strong>Triad</strong> is a chord built with exactly <strong>3 magic notes</strong> stacked on top of each other:
+                    </p>
+                    <div class="space-y-2 font-fun text-base">
+                        <div class="bg-red-100 border-l-4 border-red-500 p-3 rounded-r-xl text-red-900">
+                            1️⃣ <strong>Root (1):</strong> The main flavor base note!
+                        </div>
+                        <div class="bg-amber-100 border-l-4 border-amber-500 p-3 rounded-r-xl text-amber-900">
+                            2️⃣ <strong>Third (3):</strong> The mood note (Happy 😊 or Sad 😢)!
+                        </div>
+                        <div class="bg-sky-100 border-l-4 border-skyBlue p-3 rounded-r-xl text-sky-900">
+                            3️⃣ <strong>Fifth (5):</strong> The strong superhero topping!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sundae Graphic -->
+                <div class="bg-gradient-to-b from-teal-50 to-emerald-100 rounded-2xl p-6 border-4 border-teal-300 text-center shadow-inner">
+                    <div class="text-xs font-bold text-teal-800 uppercase tracking-widest mb-2">The 3-Scoop Triad Sundae</div>
+                    <div class="space-y-2 w-48 mx-auto py-2">
+                        <div class="bg-skyBlue text-white font-fun py-2 rounded-2xl shadow-pop-sm border-2 border-sky-600">
+                            🍧 5th (Superhero Topping)
+                        </div>
+                        <div class="bg-candyPink text-white font-fun py-2 rounded-2xl shadow-pop-sm border-2 border-pink-600">
+                            🍨 3rd (Happy/Sad Flavor)
+                        </div>
+                        <div class="bg-amber-700 text-amber-100 font-fun py-2 rounded-2xl shadow-pop-sm border-2 border-amber-900">
+                            🍦 1 (Root Base Scoop)
+                        </div>
+                    </div>
+                    <button onclick="playChord([0, 4, 7])" class="mt-4 bg-frogGreen hover:bg-teal-600 text-white font-fun px-4 py-2 rounded-xl border-b-4 border-teal-800 shadow-pop-sm bouncy-hover">
+                        🔊 Hear the 3-Scoop Sundae Ring!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WORKING OUT OPEN CHORDS -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 border-4 border-sunGold shadow-pop">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-sunGold text-white flex items-center justify-center text-2xl font-fun shadow-pop-sm">🔍</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800">Unlocking Big Open Chords!</h2>
+                    <p class="text-slate-600 font-medium">Why do 5 or 6 string chords only use 3 notes?</p>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 rounded-2xl p-5 border-2 border-amber-200 mb-6">
+                <p class="text-lg leading-relaxed text-amber-900">
+                    When you play a big chord like <strong>Open C Major</strong> or <strong>Open G Major</strong>, you strum 5 or 6 strings! But guess what? It's still just a <strong>3-note Triad</strong>! Some notes are just <strong>TWINS</strong> (doubled) on higher strings! 👯‍♂️
+                </p>
+            </div>
+
+            <!-- CHORD WORKBENCH SELECTOR -->
+            <h3 class="font-fun text-2xl text-slate-800 mb-3">Pick an Open Chord to Inspect:</h3>
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button onclick="inspectOpenChord('C')" class="chord-btn bg-candyPink text-white font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-pink-700">
+                    🎸 C Major
+                </button>
+                <button onclick="inspectOpenChord('G')" class="chord-btn bg-slate-100 text-slate-700 hover:bg-amber-200 font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-slate-300">
+                    🎸 G Major
+                </button>
+                <button onclick="inspectOpenChord('D')" class="chord-btn bg-slate-100 text-slate-700 hover:bg-amber-200 font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-slate-300">
+                    🎸 D Major
+                </button>
+                <button onclick="inspectOpenChord('A')" class="chord-btn bg-slate-100 text-slate-700 hover:bg-amber-200 font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-slate-300">
+                    🎸 A Major
+                </button>
+                <button onclick="inspectOpenChord('E')" class="chord-btn bg-slate-100 text-slate-700 hover:bg-amber-200 font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-slate-300">
+                    🎸 E Major
+                </button>
+            </div>
+
+            <!-- WORKBENCH DISPLAY BOARD -->
+            <div id="chord-workbench" class="bg-slate-900 rounded-3xl p-6 text-white border-4 border-slate-700 shadow-inner">
+                <!-- JS Dynamic Content will populate here -->
+            </div>
+        </section>
+
+        <!-- PAGE 2 QUIZ -->
+        <section class="bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-500 rounded-3xl p-6 md:p-8 text-white shadow-pop">
+            <div class="text-center max-w-xl mx-auto space-y-4">
+                <span class="bg-white/20 text-white text-xs font-fun px-4 py-1 rounded-full uppercase">Triad Mystery Quiz</span>
+                <h2 class="text-3xl font-bold font-fun">The Open Chord Mystery! 🕵️‍♂️</h2>
+                <p class="text-lg font-medium">When you strum an <strong>Open C Major</strong> chord across 5 strings, how many unique note flavors are actually in the triad?</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+                    <button onclick="checkTriadQuiz(5, this)" class="bg-white text-slate-800 font-fun py-3 px-4 rounded-xl shadow-pop-sm hover:bg-teal-100 transition-all text-base">
+                        5 Different Notes
+                    </button>
+                    <button onclick="checkTriadQuiz(3, this)" class="bg-white text-slate-800 font-fun py-3 px-4 rounded-xl shadow-pop-sm hover:bg-teal-100 transition-all text-base">
+                        3 Unique Notes (1, 3, 5)!
+                    </button>
+                    <button onclick="checkTriadQuiz(1, this)" class="bg-white text-slate-800 font-fun py-3 px-4 rounded-xl shadow-pop-sm hover:bg-teal-100 transition-all text-base">
+                        Just 1 Note
+                    </button>
+                </div>
+
+                <div id="triad-quiz-feedback" class="hidden mt-4 p-3 rounded-xl bg-white/20 font-fun text-lg animate-bounce"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 text-center text-slate-500 text-sm py-6 border-t border-slate-200">
+        <p class="font-fun">Inspired by StringKick's Guitar Interval & Triad Lessons • Made with ❤️ for future rockstars!</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- PAGE SWITCHING NAVIGATION ---
+        function switchPage(pageNum) {
+            const p1 = document.getElementById('page-1');
+            const p2 = document.getElementById('page-2');
+            const btn1 = document.getElementById('tab-page1');
+            const btn2 = document.getElementById('tab-page2');
+
+            if (pageNum === 1) {
+                p1.classList.remove('hidden');
+                p2.classList.add('hidden');
+
+                btn1.className = "flex-1 max-w-xs bg-candyPink text-white py-2.5 px-4 rounded-2xl shadow-pop-sm border-2 border-white/20 transition-all text-center";
+                btn2.className = "flex-1 max-w-xs bg-slate-700 hover:bg-slate-600 text-slate-200 py-2.5 px-4 rounded-2xl border-2 border-transparent transition-all text-center";
+            } else {
+                p1.classList.add('hidden');
+                p2.classList.remove('hidden');
+
+                btn2.className = "flex-1 max-w-xs bg-frogGreen text-white py-2.5 px-4 rounded-2xl shadow-pop-sm border-2 border-white/20 transition-all text-center";
+                btn1.className = "flex-1 max-w-xs bg-slate-700 hover:bg-slate-600 text-slate-200 py-2.5 px-4 rounded-2xl border-2 border-transparent transition-all text-center";
+
+                // Initialize chord workbench if empty
+                if (!document.getElementById('chord-workbench').innerHTML.trim()) {
+                    inspectOpenChord('C');
+                }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- WEB AUDIO SYNTHESIZER ---
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // Convert fret number to pitch frequency (A2 base = 110Hz for open A string)
+        function getFrequency(fret) {
+            const baseFreq = 110.0; // Open string base frequency (A)
+            return baseFreq * Math.pow(2, fret / 12);
+        }
+
+        function playTone(fret, duration = 0.6) {
+            initAudio();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'triangle'; // Warm guitar-like waveform
+            osc.frequency.setValueAtTime(getFrequency(fret), audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function playChord(frets) {
+            frets.forEach(f => playTone(f, 1.2));
+        }
+
+        // --- OPEN CHORDS DATA & WORKBENCH LOGIC ---
+        const openChordsData = {
+            'C': {
+                name: 'Open C Major Chord',
+                subtitle: '5 Strings Strummed 🎸',
+                notes: [
+                    { string: 'A (5th)', fret: 3, note: 'C', role: '1 (Root)', color: 'bg-amber-500' },
+                    { string: 'D (4th)', fret: 2, note: 'E', role: '3 (Major 3rd)', color: 'bg-candyPink' },
+                    { string: 'G (3rd)', fret: 0, note: 'G', role: '5 (Perfect 5th)', color: 'bg-skyBlue' },
+                    { string: 'B (2nd)', fret: 1, note: 'C', role: '1 (Twin Root! 👯)', color: 'bg-amber-500/70' },
+                    { string: 'High E (1st)', fret: 0, note: 'E', role: '3 (Twin 3rd! 👯)', color: 'bg-candyPink/70' }
+                ],
+                fretsToPlay: [3, 7, 10, 15, 19],
+                triadSummary: "The 5 strings only contain C, E, and G notes! The C and E notes repeat as high twins!"
+            },
+            'G': {
+                name: 'Open G Major Chord',
+                subtitle: '6 Strings Strummed 🎸',
+                notes: [
+                    { string: 'Low E (6th)', fret: 3, note: 'G', role: '1 (Root)', color: 'bg-amber-500' },
+                    { string: 'A (5th)', fret: 2, note: 'B', role: '3 (Major 3rd)', color: 'bg-candyPink' },
+                    { string: 'D (4th)', fret: 0, note: 'D', role: '5 (Perfect 5th)', color: 'bg-skyBlue' },
+                    { string: 'G (3rd)', fret: 0, note: 'G', role: '1 (Twin Root! 👯)', color: 'bg-amber-500/70' },
+                    { string: 'B (2nd)', fret: 0, note: 'B', role: '3 (Twin 3rd! 👯)', color: 'bg-candyPink/70' },
+                    { string: 'High E (1st)', fret: 3, note: 'G', role: '1 (Triple Root! 👯)', color: 'bg-amber-500/50' }
+                ],
+                fretsToPlay: [10, 14, 17, 22, 26, 34],
+                triadSummary: "Contains only G, B, and D notes repeated across all 6 strings!"
+            },
+            'D': {
+                name: 'Open D Major Chord',
+                subtitle: '4 Strings Strummed 🎸',
+                notes: [
+                    { string: 'D (4th)', fret: 0, note: 'D', role: '1 (Root)', color: 'bg-amber-500' },
+                    { string: 'G (3rd)', fret: 2, note: 'A', role: '5 (Perfect 5th)', color: 'bg-skyBlue' },
+                    { string: 'B (2nd)', fret: 3, note: 'D', role: '1 (Twin Root! 👯)', color: 'bg-amber-500/70' },
+                    { string: 'High E (1st)', fret: 2, note: 'F#', role: '3 (Major 3rd)', color: 'bg-candyPink' }
+                ],
+                fretsToPlay: [17, 21, 29, 33],
+                triadSummary: "Bright and cheerful! Made purely of D, F#, and A notes."
+            },
+            'A': {
+                name: 'Open A Major Chord',
+                subtitle: '5 Strings Strummed 🎸',
+                notes: [
+                    { string: 'A (5th)', fret: 0, note: 'A', role: '1 (Root)', color: 'bg-amber-500' },
+                    { string: 'D (4th)', fret: 2, note: 'E', role: '5 (Perfect 5th)', color: 'bg-skyBlue' },
+                    { string: 'G (3rd)', fret: 2, note: 'A', role: '1 (Twin Root! 👯)', color: 'bg-amber-500/70' },
+                    { string: 'B (2nd)', fret: 2, note: 'C#', role: '3 (Major 3rd)', color: 'bg-candyPink' },
+                    { string: 'High E (1st)', fret: 0, note: 'E', role: '5 (Twin 5th! 👯)', color: 'bg-skyBlue/70' }
+                ],
+                fretsToPlay: [0, 7, 12, 16, 19],
+                triadSummary: "3 fingers squished together on Fret 2! Uses A, C#, and E notes."
+            },
+            'E': {
+                name: 'Open E Major Chord',
+                subtitle: '6 Strings Strummed 🎸',
+                notes: [
+                    { string: 'Low E (6th)', fret: 0, note: 'E', role: '1 (Root)', color: 'bg-amber-500' },
+                    { string: 'A (5th)', fret: 2, note: 'B', role: '5 (Perfect 5th)', color: 'bg-skyBlue' },
+                    { string: 'D (4th)', fret: 2, note: 'E', role: '1 (Twin Root! 👯)', color: 'bg-amber-500/70' },
+                    { string: 'G (3rd)', fret: 1, note: 'G#', role: '3 (Major 3rd)', color: 'bg-candyPink' },
+                    { string: 'B (2nd)', fret: 0, note: 'B', role: '5 (Twin 5th! 👯)', color: 'bg-skyBlue/70' },
+                    { string: 'High E (1st)', fret: 0, note: 'E', role: '1 (Triple Root! 👯)', color: 'bg-amber-500/50' }
+                ],
+                fretsToPlay: [7, 14, 19, 23, 26, 31],
+                triadSummary: "Big booming rock sound! Stacked with E, G#, and B notes!"
+            }
+        };
+
+        function inspectOpenChord(chordKey) {
+            const data = openChordsData[chordKey];
+            const board = document.getElementById('chord-workbench');
+
+            // Highlight selected button
+            document.querySelectorAll('.chord-btn').forEach(btn => {
+                if (btn.innerText.includes(chordKey)) {
+                    btn.className = "chord-btn bg-candyPink text-white font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-pink-700";
+                } else {
+                    btn.className = "chord-btn bg-slate-100 text-slate-700 hover:bg-amber-200 font-fun px-5 py-2.5 rounded-2xl shadow-pop-sm bouncy-hover border-2 border-slate-300";
+                }
+            });
+
+            let html = `
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-4 border-b border-slate-700 pb-3">
+                    <div>
+                        <h3 class="font-fun text-3xl text-amber-300">${data.name}</h3>
+                        <p class="text-slate-400 text-sm font-semibold">${data.subtitle}</p>
+                    </div>
+                    <button onclick="playChord([${data.fretsToPlay.join(',')}])" class="bg-frogGreen hover:bg-teal-500 text-white font-fun px-4 py-2 rounded-xl border-b-4 border-teal-800 shadow-pop-sm bouncy-hover text-sm">
+                        🔊 Strum Full Chord
+                    </button>
+                </div>
+
+                <div class="grid gap-2 mb-6">
+            `;
+
+            data.notes.forEach(n => {
+                html += `
+                    <div class="flex items-center justify-between bg-slate-800 p-3 rounded-xl border border-slate-700">
+                        <span class="font-bold text-slate-300 text-sm w-28">${n.string}</span>
+                        <span class="bg-slate-900 px-3 py-1 rounded-lg text-amber-400 font-fun text-xs">Fret ${n.fret}</span>
+                        <span class="font-fun text-lg text-white w-12 text-center">${n.note}</span>
+                        <span class="${n.color} text-white font-fun text-xs px-3 py-1.5 rounded-xl text-center min-w-[140px] shadow-sm">
+                            ${n.role}
+                        </span>
+                    </div>
+                `;
+            });
+
+            html += `
+                </div>
+                <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700 text-center">
+                    <p class="font-fun text-amber-200 text-base">💡 Triad Secret:</p>
+                    <p class="text-sm text-slate-300 mt-1">${data.triadSummary}</p>
+                </div>
+            `;
+
+            board.innerHTML = html;
+        }
+
+        function checkTriadQuiz(answer, btn) {
+            const feedback = document.getElementById('triad-quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (answer === 3) {
+                feedback.innerText = "🎉 CORRECT! All open chords are just 3-note TRIADS (1, 3, 5) with extra twin notes! You're a Genius! 🏆";
+                feedback.className = "mt-4 p-3 rounded-xl bg-emerald-500 text-white font-fun text-lg animate-bounce";
+                playChord([3, 7, 10, 15, 19]);
+            } else {
+                feedback.innerText = "Close try! Even if you strum 5 or 6 strings, there are only 3 unique TRIAD notes! Give it another shot! 🎸";
+                feedback.className = "mt-4 p-3 rounded-xl bg-amber-500 text-white font-fun text-lg";
+                playTone(2, 0.5);
+            }
+        }
+
+        // --- SECTION 1: FROG HOP ANIMATION ---
+        function playHopAnimation(hops) {
+            const frog = document.getElementById('frog-display');
+            const hopText = document.getElementById('hop-text');
+            
+            frog.classList.add('animate-hop');
+            playTone(0, 0.3);
+            
+            setTimeout(() => {
+                playTone(hops, 0.6);
+            }, 300);
+
+            setTimeout(() => {
+                frog.classList.remove('animate-hop');
+            }, 500);
+
+            if(hops === 1) {
+                hopText.innerText = "Ribbit! You took 1 tiny half-step hop!";
+            } else {
+                hopText.innerText = "Boing! You leaped 4 frets to a Major 3rd!";
+            }
+        }
+
+        // --- SECTION 2: FRETBOARD LAB LOGIC ---
+        const intervalNames = {
+            0: { name: "Unison (Same Note)", emoji: "👯", desc: "Two notes playing the exact same spot!" },
+            1: { name: "Minor 2nd", emoji: "🐝", desc: "1 fret hop! Sounds buzzy like a busy bee!" },
+            2: { name: "Major 2nd", emoji: "🐥", desc: "2 fret hops! Sounds like step 1 of 'Do-Re-Mi'!" },
+            3: { name: "Minor 3rd", emoji: "🌧️", desc: "3 fret hops! Sounds a little sad and rainy." },
+            4: { name: "Major 3rd", emoji: "😊", desc: "4 fret hops! Super happy & bright sound!" },
+            5: { name: "Perfect 4th", emoji: "🎺", desc: "5 fret hops! Like a triumphant horn song!" },
+            6: { name: "Tritone / Dim 5th", emoji: "👻", desc: "6 fret hops! Spooky haunted house sound!" },
+            7: { name: "Perfect 5th", emoji: "⚡", desc: "7 fret hops! Strong superhero power chord sound!" },
+            8: { name: "Minor 6th", emoji: "🎨", desc: "8 fret hops! Mysterious and deep." },
+            9: { name: "Major 6th", emoji: "🐴", desc: "9 fret hops! Sounds like 'My Bonnie Lies Over the Ocean'!" },
+            10: { name: "Minor 7th", emoji: "🕶️", desc: "10 fret hops! Smooth, bluesy jazz style." },
+            11: { name: "Major 7th", emoji: "☁️", desc: "11 fret hops! Dreamy floaty cloud sound." },
+            12: { name: "Octave Twin", emoji: "🌈", desc: "12 fret hops! Exact same note, but 1 octave higher!" }
+        };
+
+        let selectedFrets = [];
+
+        function renderFretboard() {
+            const grid = document.getElementById('fret-grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i <= 12; i++) {
+                const fretBtn = document.createElement('button');
+                fretBtn.className = `fret flex items-center justify-center relative hover:bg-amber-300/40 transition-colors ${selectedFrets.includes(i) ? 'bg-amber-300/60' : ''}`;
+                fretBtn.onclick = () => selectFret(i);
+
+                // Add Note Circle if selected
+                if (selectedFrets.includes(i)) {
+                    const badge = document.createElement('span');
+                    const isRoot = selectedFrets[0] === i;
+                    badge.className = `w-7 h-7 rounded-full text-white font-fun text-xs flex items-center justify-center shadow-md animate-bounce ${isRoot ? 'bg-candyPink' : 'bg-skyBlue'}`;
+                    badge.innerText = i;
+                    fretBtn.appendChild(badge);
+                }
+
+                // Fret Markers (dots on 3, 5, 7, 9, 12)
+                if ([3, 5, 7, 9, 12].includes(i)) {
+                    const marker = document.createElement('div');
+                    marker.className = 'fret-marker';
+                    fretBtn.appendChild(marker);
+                }
+
+                grid.appendChild(fretBtn);
+            }
+        }
+
+        function selectFret(fretNum) {
+            playTone(fretNum, 0.4);
+
+            if (selectedFrets.length >= 2) {
+                selectedFrets = [fretNum];
+            } else if (selectedFrets.length === 1 && selectedFrets[0] === fretNum) {
+                // Ignore same click
+            } else {
+                selectedFrets.push(fretNum);
+                // Sort ascending
+                selectedFrets.sort((a, b) => a - b);
+            }
+
+            renderFretboard();
+            updateIntervalResult();
+        }
+
+        function presetInterval(fretA, fretB) {
+            selectedFrets = [fretA, fretB];
+            renderFretboard();
+            updateIntervalResult();
+            
+            // Play melodic sequence then harmony
+            playTone(fretA, 0.5);
+            setTimeout(() => playTone(fretB, 0.5), 400);
+            setTimeout(() => playChord([fretA, fretB]), 900);
+        }
+
+        function clearFretboard() {
+            selectedFrets = [];
+            renderFretboard();
+            document.getElementById('interval-result').innerHTML = `
+                <p class="text-slate-500 font-fun text-lg">👇 Tap two frets above to hear the interval and count the hops!</p>
+            `;
+        }
+
+        function updateIntervalResult() {
+            const res = document.getElementById('interval-result');
+            if (selectedFrets.length === 1) {
+                res.innerHTML = `
+                    <p class="font-fun text-lg text-slate-700">Starting note set at <strong>Fret ${selectedFrets[0]}</strong>. Now tap a second fret!</p>
+                `;
+            } else if (selectedFrets.length === 2) {
+                const distance = selectedFrets[1] - selectedFrets[0];
+                const info = intervalNames[distance] || { name: "Big Jump", emoji: "🚀", desc: "A big distance!" };
+
+                res.innerHTML = `
+                    <div class="space-y-1">
+                        <span class="text-3xl">${info.emoji}</span>
+                        <h4 class="font-fun text-2xl text-slate-800">${info.name} (${distance} Hops)</h4>
+                        <p class="text-sm text-slate-600 font-semibold">${info.desc}</p>
+                        <button onclick="playChord([${selectedFrets[0]}, ${selectedFrets[1]}])" class="mt-2 bg-candyPink text-white font-fun text-xs px-3 py-1.5 rounded-lg shadow-pop-sm hover:bg-pink-600">
+                            🔊 Play Both Together!
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // --- SECTION 3: MAGIC STRING SOUND ---
+        function playMagicSound(hops) {
+            playTone(0, 0.4);
+            setTimeout(() => playTone(hops, 0.6), 300);
+        }
+
+        // --- SECTION 4: CHORD CAKE BUILDER ---
+        let cakeState = 1; // 1 = base, 2 = 3rd, 3 = 5th
+
+        function addCakeIngredient(type) {
+            if (type === '3rd' && cakeState === 1) {
+                cakeState = 2;
+                const layer3rd = document.getElementById('layer-3rd');
+                layer3rd.className = "w-3/4 bg-candyPink text-white py-3 rounded-xl border-2 border-pink-700 font-fun text-sm shadow-pop-sm animate-bounce";
+                layer3rd.innerText = "🍓 Layer 2: Major 3rd (Fret 4)";
+                
+                playTone(4, 0.6);
+
+                document.getElementById('btn-add-3rd').disabled = true;
+                document.getElementById('btn-add-3rd').classList.add('opacity-50', 'cursor-not-allowed');
+
+                const btn5th = document.getElementById('btn-add-5th');
+                btn5th.disabled = false;
+                btn5th.classList.remove('opacity-50', 'cursor-not-allowed');
+                btn5th.classList.add('bouncy-hover');
+            } else if (type === '5th' && cakeState === 2) {
+                cakeState = 3;
+                const layer5th = document.getElementById('layer-5th');
+                layer5th.className = "w-full bg-skyBlue text-white py-3 rounded-xl border-2 border-sky-700 font-fun text-sm shadow-pop-sm animate-bounce";
+                layer5th.innerText = "🫐 Topping: Perfect 5th (Fret 7)";
+
+                document.getElementById('btn-add-5th').disabled = true;
+                document.getElementById('btn-add-5th').classList.add('opacity-50', 'cursor-not-allowed');
+
+                // Play entire major chord cake sound!
+                setTimeout(() => playChord([0, 4, 7]), 300);
+            }
+        }
+
+        function resetCake() {
+            cakeState = 1;
+            
+            const layer3rd = document.getElementById('layer-3rd');
+            layer3rd.className = "w-3/4 bg-slate-200 text-slate-400 py-3 rounded-xl border-2 border-dashed border-slate-300 font-fun text-sm transition-all duration-300";
+            layer3rd.innerText = "🔒 Lock: Add Major 3rd (4 Frets)";
+
+            const layer5th = document.getElementById('layer-5th');
+            layer5th.className = "w-full bg-slate-200 text-slate-400 py-3 rounded-xl border-2 border-dashed border-slate-300 font-fun text-sm transition-all duration-300";
+            layer5th.innerText = "🔒 Lock: Add Perfect 5th (7 Frets)";
+
+            const btn3rd = document.getElementById('btn-add-3rd');
+            btn3rd.disabled = false;
+            btn3rd.classList.remove('opacity-50', 'cursor-not-allowed');
+
+            const btn5th = document.getElementById('btn-add-5th');
+            btn5th.disabled = true;
+            btn5th.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+
+        // --- SECTION 6: QUIZ LOGIC ---
+        function checkQuiz(isCorrect, btnElement) {
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedback.innerText = "🎉 BINGO! 4 frets = Major 3rd (Happy Cake Sound!) You earned a Rockstar Star! ⭐";
+                feedback.className = "mt-4 p-3 rounded-xl bg-emerald-500 text-white font-fun text-lg animate-bounce";
+                playChord([0, 4, 7]);
+            } else {
+                feedback.innerText = "Oops! Almost! Remember: 3 frets is sad, but 4 frets makes the HAPPY Major 3rd! Try again! 🎸";
+                feedback.className = "mt-4 p-3 rounded-xl bg-amber-500 text-white font-fun text-lg";
+                playTone(3, 0.5);
+            }
+        }
+
+        // Initialize Fretboard on Page Load
+        window.onload = function() {
+            renderFretboard();
+        };
+    </script>
+</body>
+</html>

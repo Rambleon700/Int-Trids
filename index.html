@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guitar Intervals & Triads – Complete Guide</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --card: #1a2332;
+    --accent: #3b82f6;
+    --accent2: #10b981;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --fret: #334155;
+    --string: #64748b;
+    --root: #ef4444;
+    --third: #3b82f6;
+    --fifth: #10b981;
+    --highlight: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 0 0 60px;
+  }
+  header {
+    background: linear-gradient(135deg, #1e3a5f, #0f172a);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--accent);
+  }
+  header h1 { font-size: 1.9rem; margin-bottom: 0.4rem; }
+  header p { color: var(--muted); font-size: 1.05rem; }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--card);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  nav button {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--text);
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  nav button.active, nav button:hover {
+    background: var(--accent);
+    color: white;
+  }
+  .page { display: none; max-width: 960px; margin: 0 auto; padding: 2rem 1.2rem; }
+  .page.active { display: block; }
+  h2 { font-size: 1.7rem; margin: 2rem 0 1rem; color: var(--accent); border-bottom: 2px solid var(--fret); padding-bottom: 0.4rem; }
+  h3 { font-size: 1.3rem; margin: 1.6rem 0 0.8rem; color: var(--accent2); }
+  p, li { margin-bottom: 0.8rem; }
+  ul, ol { padding-left: 1.4rem; margin-bottom: 1.2rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 0.7rem 0.9rem;
+    text-align: center;
+    border-bottom: 1px solid var(--fret);
+  }
+  th { background: #243044; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.4rem;
+    margin: 1.4rem 0;
+    border: 1px solid var(--fret);
+  }
+  .note { background: #1e3a5f; border-left: 4px solid var(--accent); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+  .warning { background: #3f2a1e; border-left: 4px solid var(--highlight); }
+
+  /* Fretboard */
+  .fretboard {
+    display: grid;
+    grid-template-columns: 40px repeat(6, 1fr);
+    gap: 2px;
+    margin: 1.2rem 0;
+    max-width: 420px;
+    font-size: 0.85rem;
+  }
+  .fretboard .label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .string {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+  }
+  .fret {
+    aspect-ratio: 1;
+    background: #1e293b;
+    border: 1px solid var(--fret);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    position: relative;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+  .fret.open { background: #0f172a; border-style: dashed; }
+  .fret.root { background: var(--root); color: white; }
+  .fret.third { background: var(--third); color: white; }
+  .fret.fifth { background: var(--fifth); color: white; }
+  .fret.interval { background: var(--highlight); color: #111; }
+  .fret.muted { opacity: 0.25; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0.8rem 0 1.4rem;
+    font-size: 0.9rem;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .dot {
+    width: 16px; height: 16px; border-radius: 50%;
+  }
+  .dot.root { background: var(--root); }
+  .dot.third { background: var(--third); }
+  .dot.fifth { background: var(--fifth); }
+  .dot.interval { background: var(--highlight); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+    .fretboard { max-width: 100%; }
+  }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .toc { background: var(--card); padding: 1.2rem; border-radius: 10px; margin-bottom: 2rem; }
+  .toc a { color: var(--accent); text-decoration: none; display: block; padding: 0.3rem 0; }
+  .toc a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Guitar Intervals & Triads</h1>
+  <p>Complete practical guide – from intervals to real-world triad playing</p>
+</header>
+
+<nav>
+  <button id="btn-intervals" class="active" onclick="showPage('intervals')">1. Guitar Intervals</button>
+  <button id="btn-triads" onclick="showPage('triads')">2. Triads from Open Chords</button>
+</nav>
+
+<!-- ==================== PAGE 1: INTERVALS ==================== -->
+<div id="intervals" class="page active">
+  <div class="toc">
+    <strong>On this page</strong>
+    <a href="#what">What are intervals?</a>
+    <a href="#table">Complete interval table</a>
+    <a href="#play">How to play them on guitar</a>
+    <a href="#use">How to use intervals</a>
+    <a href="#learn">4-step learning plan</a>
+  </div>
+
+  <h2 id="what">What are intervals?</h2>
+  <p>An <strong>interval</strong> is simply the distance between two notes. On the guitar that distance is measured in frets (semitones).</p>
+  <p>Intervals are the building blocks of everything: scales, chords, melodies, and progressions. Learning them is the single most powerful way to understand and navigate the fretboard.</p>
+
+  <div class="card">
+    <p><strong>Example:</strong> 1st fret on the low E string → 5th fret on the same string = 4 frets = <strong>Major 3rd</strong>.</p>
+  </div>
+
+  <h2 id="table">The 12 intervals (complete table)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Frets</th>
+        <th>Interval</th>
+        <th>Shorthand</th>
+        <th>Common use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Minor 2nd</td><td>m2</td><td>Tension, chromatic</td></tr>
+      <tr><td>2</td><td>Major 2nd</td><td>M2</td><td>Scale steps</td></tr>
+      <tr><td>3</td><td>Minor 3rd</td><td>m3</td><td>Minor chords</td></tr>
+      <tr><td>4</td><td>Major 3rd</td><td>M3</td><td>Major chords</td></tr>
+      <tr><td>5</td><td>Perfect 4th</td><td>P4</td><td>Sus chords, power</td></tr>
+      <tr><td>6</td><td>Tritone</td><td>TT / ♯4 / ♭5</td><td>Blues, diminished</td></tr>
+      <tr><td>7</td><td>Perfect 5th</td><td>P5</td><td>Power chords, triads</td></tr>
+      <tr><td>8</td><td>Minor 6th</td><td>m6</td><td>Minor colour</td></tr>
+      <tr><td>9</td><td>Major 6th</td><td>M6</td><td>Major colour</td></tr>
+      <tr><td>10</td><td>Minor 7th</td><td>m7</td><td>Dominant / minor 7</td></tr>
+      <tr><td>11</td><td>Major 7th</td><td>M7</td><td>Maj7 chords</td></tr>
+      <tr><td>12</td><td>Octave</td><td>P8</td><td>Same note higher</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">Shorthand system: <strong>m</strong> = minor · <strong>M</strong> = major · <strong>P</strong> = perfect · <strong>TT</strong> = tritone</p>
+
+  <h2 id="play">How to play intervals on the guitar</h2>
+
+  <h3>1. Same string</h3>
+  <p>Simply count frets from the starting note. Perfect 5th = 7 frets higher on the same string.</p>
+
+  <h3>2. Across strings (the practical way)</h3>
+  <p>Most intervals are easier when played on adjacent strings. The basic rule for most string pairs:</p>
+  <ul>
+    <li>Move up one string = +5 frets of distance</li>
+    <li>Then adjust the remaining frets</li>
+  </ul>
+
+  <div class="warning card">
+    <strong>Critical exception – G to B string:</strong><br>
+    The interval between the G and B strings is only <strong>4 frets</strong> (not 5). Every shape that crosses the G–B strings must be shifted one fret higher than you expect.
+  </div>
+
+  <h3>Visual examples (Perfect 5th)</h3>
+  <div class="two-col">
+    <div>
+      <p><strong>Same string (open E → 7th fret)</strong></p>
+      <div class="fretboard">
+        <div class="label">E</div>
+        <div class="fret open root">R</div>
+        <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+        <div class="fret"></div><div class="fret"></div>
+        <div class="label">A</div>
+        <div class="fret open"></div><div class="fret"></div><div class="fret"></div>
+        <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--muted)">Open low E → 7th fret low E</p>
+    </div>
+    <div>
+      <p><strong>Across strings (much easier)</strong></p>
+      <div class="fretboard">
+        <div class="label">E</div>
+        <div class="fret open root">R</div>
+        <div class="fret"></div><div class="fret"></div>
+        <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+        <div class="label">A</div>
+        <div class="fret open"></div>
+        <div class="fret interval">5</div>
+        <div class="fret"></div><div class="fret"></div>
+        <div class="fret"></div><div class="fret"></div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--muted)">Open low E → 2nd fret A string</p>
+    </div>
+  </div>
+
+  <h2 id="use">How to use intervals (the real power)</h2>
+  <p>Every chord has a recipe made of intervals from the root.</p>
+
+  <div class="card">
+    <h3>Major triad recipe</h3>
+    <ul>
+      <li>Root</li>
+      <li>Major 3rd (4 frets)</li>
+      <li>Perfect 5th (7 frets)</li>
+    </ul>
+    <p>Example – C major:</p>
+    <div class="legend">
+      <span><div class="dot root"></div> Root (C)</span>
+      <span><div class="dot third"></div> Major 3rd (E)</span>
+      <span><div class="dot fifth"></div> Perfect 5th (G)</span>
+    </div>
+    <div class="fretboard">
+      <div class="label">A</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret root">C</div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">D</div>
+      <div class="fret"></div><div class="fret third">E</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="label">G</div>
+      <div class="fret fifth">G</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+    </div>
+    <p>Those three notes alone create a full C major triad. Extra notes in the open C chord are just octaves or doublings of the same intervals.</p>
+  </div>
+
+  <h2 id="learn">Best way to learn intervals – 4-step plan</h2>
+  <ol>
+    <li><strong>Start with m3, M3, P5, P8</strong><br>
+        Use them to build and recognise major & minor chords.</li>
+    <li><strong>Add m7 & M7</strong><br>
+        Now you can build all common 7th chords.</li>
+    <li><strong>Add M2, P4, M6</strong><br>
+        These open up major-scale melodies.</li>
+    <li><strong>Finish with m2, TT, m6</strong><br>
+        You can now analyse any scale or melody.</li>
+  </ol>
+  <p class="note">Never try to memorise all 12 at once. Learn a few, use them immediately on the fretboard, then add more.</p>
+</div>
+
+<!-- ==================== PAGE 2: TRIADS ==================== -->
+<div id="triads" class="page">
+  <div class="toc">
+    <strong>On this page</strong>
+    <a href="#triad-what">What is a triad?</a>
+    <a href="#from-open">Extracting triads from open chords</a>
+    <a href="#examples">Full visual examples</a>
+    <a href="#inversions">Inversions & moving them</a>
+    <a href="#practice">Practice routine</a>
+  </div>
+
+  <h2 id="triad-what">What is a triad?</h2>
+  <p>A <strong>triad</strong> is a three-note chord built from:</p>
+  <ul>
+    <li><strong>Root</strong> (1)</li>
+    <li><strong>Third</strong> (major = M3 or minor = m3)</li>
+    <li><strong>Fifth</strong> (usually perfect = P5)</li>
+  </ul>
+  <p>These three notes are the DNA of almost every chord you play. Open chords are simply triads with extra doubled notes (octaves) added for richness.</p>
+
+  <div class="card">
+    <strong>Four basic triad types</strong>
+    <table>
+      <tr><th>Type</th><th>Formula</th><th>Sound</th></tr>
+      <tr><td>Major</td><td>1 – M3 – P5</td><td>Happy / stable</td></tr>
+      <tr><td>Minor</td><td>1 – m3 – P5</td><td>Sad / dark</td></tr>
+      <tr><td>Diminished</td><td>1 – m3 – ♭5</td><td>Tense</td></tr>
+      <tr><td>Augmented</td><td>1 – M3 – ♯5</td><td>Unstable / dreamy</td></tr>
+    </table>
+  </div>
+
+  <h2 id="from-open">Tutorial: Deciphering triads from open chords</h2>
+  <p>Every open chord contains a triad. Here’s the simple method:</p>
+  <ol>
+    <li>Identify the root of the open chord.</li>
+    <li>Find the third and fifth that belong to that chord.</li>
+    <li>Ignore any doubled notes (extra roots or octaves).</li>
+    <li>The remaining three unique notes = the triad.</li>
+  </ol>
+
+  <h2 id="examples">Visual examples – open chords → pure triads</h2>
+
+  <!-- C Major -->
+  <div class="card">
+    <h3>1. Open C major → C major triad</h3>
+    <p>Notes in open C: C – E – G – C – E<br>
+       Unique notes: <strong>C (root), E (M3), G (P5)</strong></p>
+    <div class="legend">
+      <span><div class="dot root"></div> Root</span>
+      <span><div class="dot third"></div> 3rd</span>
+      <span><div class="dot fifth"></div> 5th</span>
+    </div>
+    <div class="two-col">
+      <div>
+        <p><strong>Full open C</strong></p>
+        <div class="fretboard">
+          <div class="label">A</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret root">C</div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">D</div>
+          <div class="fret"></div>
+          <div class="fret third">E</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="label">G</div>
+          <div class="fret open fifth">G</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">B</div>
+          <div class="fret root">C</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">e</div>
+          <div class="fret open third">E</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+        </div>
+      </div>
+      <div>
+        <p><strong>Pure triad (strings 4-3-2 or 5-4-3)</strong></p>
+        <div class="fretboard">
+          <div class="label">A</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret root">C</div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">D</div>
+          <div class="fret"></div>
+          <div class="fret third">E</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="label">G</div>
+          <div class="fret open fifth">G</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--muted)">This is the root-position C triad on the middle strings.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- G Major -->
+  <div class="card">
+    <h3>2. Open G major → G major triad</h3>
+    <p>Notes: G – B – D – G – B – G<br>
+       Unique: <strong>G (R), B (M3), D (P5)</strong></p>
+    <div class="two-col">
+      <div>
+        <p><strong>Full open G</strong></p>
+        <div class="fretboard">
+          <div class="label">E</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret root">G</div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">A</div>
+          <div class="fret"></div>
+          <div class="fret third">B</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="label">D</div>
+          <div class="fret open fifth">D</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">G</div>
+          <div class="fret open root">G</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">B</div>
+          <div class="fret open third">B</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">e</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret root">G</div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+        </div>
+      </div>
+      <div>
+        <p><strong>Useful triad shapes from G</strong></p>
+        <p>Top three strings (common for rhythm & lead):</p>
+        <div class="fretboard">
+          <div class="label">G</div>
+          <div class="fret open root">G</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">B</div>
+          <div class="fret open third">B</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+          <div class="label">e</div>
+          <div class="fret"></div><div class="fret"></div>
+          <div class="fret fifth">D</div>
+          <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--muted)">2nd inversion (5–1–3)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- D Major -->
+  <div class="card">
+    <h3>3. Open D major → D major triad</h3>
+    <p>Notes: D – A – D – F♯<br>
+       Unique: <strong>D (R), F♯ (M3), A (P5)</strong></p>
+    <div class="fretboard">
+      <div class="label">D</div>
+      <div class="fret open root">D</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">G</div>
+      <div class="fret"></div>
+      <div class="fret fifth">A</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="label">B</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret third">F♯</div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">e</div>
+      <div class="fret"></div>
+      <div class="fret root">D</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+    </div>
+    <p>This is already almost a pure triad – one of the cleanest open-chord triads.</p>
+  </div>
+
+  <!-- A Major -->
+  <div class="card">
+    <h3>4. Open A major → A major triad</h3>
+    <p>Unique notes: <strong>A (R), C♯ (M3), E (P5)</strong></p>
+    <div class="fretboard">
+      <div class="label">A</div>
+      <div class="fret open root">A</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">D</div>
+      <div class="fret"></div>
+      <div class="fret fifth">E</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="label">G</div>
+      <div class="fret"></div>
+      <div class="fret third">C♯</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="label">B</div>
+      <div class="fret"></div>
+      <div class="fret fifth">E</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+    </div>
+  </div>
+
+  <!-- E Major -->
+  <div class="card">
+    <h3>5. Open E major → E major triad</h3>
+    <p>Unique notes: <strong>E (R), G♯ (M3), B (P5)</strong></p>
+    <div class="fretboard">
+      <div class="label">E</div>
+      <div class="fret open root">E</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">A</div>
+      <div class="fret"></div>
+      <div class="fret fifth">B</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="label">D</div>
+      <div class="fret"></div>
+      <div class="fret third">G♯</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="label">G</div>
+      <div class="fret open root">E</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">B</div>
+      <div class="fret open fifth">B</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+      <div class="label">e</div>
+      <div class="fret open root">E</div>
+      <div class="fret"></div><div class="fret"></div>
+      <div class="fret"></div><div class="fret"></div><div class="fret"></div>
+    </div>
+  </div>
+
+  <h2 id="inversions">Understanding inversions</h2>
+  <p>A triad can be played with any of its three notes as the lowest note:</p>
+  <ul>
+    <li><strong>Root position</strong> – Root is lowest (1–3–5)</li>
+    <li><strong>1st inversion</strong> – 3rd is lowest (3–5–1)</li>
+    <li><strong>2nd inversion</strong> – 5th is lowest (5–1–3)</li>
+  </ul>
+  <p>All the open-chord examples above already contain different inversions depending on which three strings you focus on.</p>
+
+  <h2 id="practice">Practical practice routine</h2>
+  <ol>
+    <li>Take one open major chord (C, G, D, A or E).</li>
+    <li>Play the full open chord, then mute the extra notes until only the three unique triad notes remain.</li>
+    <li>Move that three-note shape up and down the neck (same shape = different keys).</li>
+    <li>Convert it to minor by flattening the 3rd one fret.</li>
+    <li>Practice switching between two or three triads (e.g. C → G → Am → F) using only triad shapes.</li>
+  </ol>
+
+  <div class="note">
+    <strong>Pro tip:</strong> Once you can see the triad inside every open chord, you can instantly create cleaner rhythm parts, better voice-leading, and targeted solo lines that always hit chord tones.
+  </div>
+</div>
+
+<footer>
+  Based on the excellent intervals guide from StringKick + practical triad extraction methods.<br>
+  Open this file offline anytime – no internet required.
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('btn-' + id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>

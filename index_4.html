@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guitar Intervals &amp; Triads – Practice &amp; Theory Guide</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#111215;color:#e8e6e1;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:#181a20;border-bottom:3px solid #6b4a2b;padding:18px 20px 0}
+h1{margin:0 0 4px;font-size:1.5rem;color:#ffe9cc}
+header p{margin:0 0 12px;color:#9aa0ad;font-size:.9rem}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:#242832;color:#c9ccd4;border:1px solid #3a3f4d;border-bottom:none;border-radius:8px 8px 0 0;padding:10px 20px;font-size:1rem;cursor:pointer}
+nav button.on{background:#111215;color:#f2a93b;border-color:#6b4a2b;font-weight:600}
+main{max-width:1000px;margin:0 auto;padding:20px}
+section.page{display:none}section.page.on{display:block}
+h2{color:#f2a93b;border-bottom:1px solid #3a3f4d;padding-bottom:6px;margin-top:34px}
+h3{color:#ffe9cc;margin-bottom:6px}
+.panel{background:#181a20;border:1px solid #3a3f4d;border-left:4px solid #6b4a2b;border-radius:8px;padding:14px 18px;margin:14px 0}
+.tip{border-left-color:#f2a93b}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:.93rem}
+th,td{border:1px solid #3a3f4d;padding:6px 10px;text-align:center}
+th{background:#242832;color:#ffe9cc}
+td.l,th.l{text-align:left}
+.scroll{overflow-x:auto;background:#181a20;border:1px solid #6b4a2b;border-radius:8px;padding:8px}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.btns button,.tog{background:#242832;color:#e8e6e1;border:1px solid #3a3f4d;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.9rem}
+.btns button.on{background:#f2a93b;color:#111215;border-color:#f2a93b;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:16px}
+.card{background:#181a20;border:1px solid #3a3f4d;border-radius:10px;padding:12px}
+.card h3{margin:0 0 4px;color:#f2a93b}
+.key span{display:inline-block;margin-right:14px}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin-right:4px}
+code{background:#242832;padding:1px 6px;border-radius:4px;color:#ffe9cc}
+.small{color:#9aa0ad;font-size:.85rem}
+ol li,ul li{margin:4px 0}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>Guitar Intervals &amp; Triads</h1>
+<p>Interactive study guide · intervals summary based on the StringKick guide “Guitar Intervals: Explained Easily” (Just Rijna)</p>
+<nav>
+<button id="tab1" class="on" onclick="showPage(1)">Page 1 · Intervals</button>
+<button id="tab2" onclick="showPage(2)">Page 2 · Triads &amp; Open Chords</button>
+<button id="tab3" onclick="window.location.href='guitar_triads_lesson.html'">Page 3 · guitar_triads_lesson</button>
+</nav>
+</header>
+<main>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page on" id="page1">
+<h2 style="margin-top:6px">1. Why intervals matter</h2>
+<p>Intervals are the building blocks of music. They explain scales, chords, melodies and chord progressions – and they are also the key to navigating the fretboard. This page covers what intervals are, how to play them on guitar, how they build chords, and a four-step plan for learning them.</p>
+
+<h2>2. What is an interval?</h2>
+<p>An interval is simply <strong>the distance between two notes</strong>. It can be tiny (one fret) or large (the open low E to a note way up the neck). Saying “four frets apart” means little to non-guitarists, so each distance has a name. For example, fret 1 to fret 5 on the low E string is four frets – a <strong>major third</strong>.</p>
+<p>There are twelve intervals. Each fret you climb adds one <em>semitone</em>:</p>
+<div class="scroll"><table>
+<tr><th class="l">Frets (semitones)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+<tr><th class="l">Interval</th><td>Minor 2nd</td><td>Major 2nd</td><td>Minor 3rd</td><td>Major 3rd</td><td>Perfect 4th</td><td>Tritone</td><td>Perfect 5th</td><td>Minor 6th</td><td>Major 6th</td><td>Minor 7th</td><td>Major 7th</td><td>Octave</td></tr>
+<tr><th class="l">Shorthand</th><td>m2</td><td>M2</td><td>m3</td><td>M3</td><td>P4</td><td>TT</td><td>P5</td><td>m6</td><td>M6</td><td>m7</td><td>M7</td><td>P8</td></tr>
+</table></div>
+<div class="panel"><strong>Reading the names.</strong> <code>m</code> = minor, <code>M</code> = major, <code>P</code> = perfect, <code>TT</code> = tritone. Notice the patterns: a counting system (2nds, 3rds … 7ths), major/minor pairs, three “perfect” intervals (the 4th, the 5th and the octave), and one odd one out – the tritone. You don’t need to memorise this yet; just know there are twelve.</div>
+
+<h2>3. Playing intervals on guitar</h2>
+<p>Take the <strong>perfect fifth</strong> (7 frets). From the open low E, go up seven frets to fret 7. Start from fret 2 and it’s fret 9. The same logic works from <em>any</em> fret, and for every interval.</p>
+<h3>Across strings</h3>
+<p>Moving to the next string up is the same as sliding <strong>5 frets</strong> along one string. So a perfect fifth on different strings is: (1) go up one string (= 5 frets), then (2) slide up 2 more frets (= 7 total). This is usually more comfortable than stretching along one string.</p>
+<div class="panel tip"><strong>The G–B exception.</strong> Between the G and B strings the gap is only <strong>4 frets</strong>, not 5. So when an interval crosses from G to B (or back), shift the pattern one fret. Try it in the explorer below – watch how the dots jump by one fret at the G/B boundary.</div>
+
+<h3>Interactive interval explorer</h3>
+<p class="small">Click any spot on the fretboard to set the <span style="color:#f2a93b">root</span>, then pick an interval to see every place it can be played (frets 0–12). Choose “All” to label every interval above the root.</p>
+<div class="btns" id="ivBtns"></div>
+<div class="scroll"><div id="ivBoard"></div></div>
+<div class="panel" id="ivInfo"></div>
+
+<h2>4. How to use intervals: building a chord</h2>
+<p>Every chord type has a recipe of intervals. The <strong>major chord</strong> recipe is:</p>
+<p style="text-align:center;font-size:1.15rem"><code>Root</code> + <code>Major third (M3)</code> + <code>Perfect fifth (P5)</code></p>
+<p>Build a C chord: the root is C (A string, fret 3). A major third above is E (4 frets up – D string fret 2). A perfect fifth above is G (7 frets up – open G string). Play those three together and you have C major. The full open C chord (x32010) just repeats the same ingredients in higher octaves – an extra root (C, B string fret 1) and an extra third (E, open high e). No new ingredients, only more of the same.</p>
+<div class="scroll"><div id="cBuild"></div></div>
+<p class="small key"><span><i class="dot" style="background:#f2a93b"></i>Root</span><span><i class="dot" style="background:#4fc3b0"></i>Major 3rd</span><span><i class="dot" style="background:#a98bf0"></i>Perfect 5th</span></p>
+<p>Intervals also reveal why chords sound “happy” or “sad”, how melodies are put together, and how scales and progressions work. Page 2 uses this idea to unpick the open chords you already know.</p>
+
+<h2>5. How to learn intervals (4-step plan)</h2>
+<p>Don’t memorise all twelve in a list. Learn a few at a time and apply them to real music.</p>
+<table>
+<tr><th>Step</th><th>Learn</th><th>Frets</th><th class="l">What it unlocks</th></tr>
+<tr><td>1</td><td>m3, M3, P5, P8</td><td>3, 4, 7, 12</td><td class="l">Build and analyse major and minor chords</td></tr>
+<tr><td>2</td><td>m7, M7</td><td>10, 11</td><td class="l">Seventh chords such as Amaj7, D7, Bm7 (six intervals – half of them!)</td></tr>
+<tr><td>3</td><td>M2, P4, M6</td><td>2, 5, 9</td><td class="l">Analyse melodies based on the major scale</td></tr>
+<tr><td>4</td><td>m2, TT, m6</td><td>1, 6, 8</td><td class="l">Completes the set – any scale or melody</td></tr>
+</table>
+<div class="panel tip"><strong>Practice idea:</strong> pick a root anywhere on the neck, say an interval out loud (“major third”), then play it and listen. Use the explorer above to check yourself, and always remember the G–B exception.</div>
+<p class="small">Source: stringkick.com/blog-lessons/guitar-intervals (summarised in my own words; the original includes free cheat sheets, games and a course).</p>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page" id="page2">
+<h2 style="margin-top:6px">1. What is a triad?</h2>
+<p>A triad is a chord built from just <strong>three different notes</strong>, stacked from the intervals you met on Page 1:</p>
+<table>
+<tr><th>Triad</th><th>Formula</th><th>Intervals from root</th><th>Frets from root</th><th>Sound</th></tr>
+<tr><td>Major</td><td>1 – 3 – 5</td><td>M3 + P5</td><td>4 and 7</td><td>bright, happy</td></tr>
+<tr><td>Minor</td><td>1 – ♭3 – 5</td><td>m3 + P5</td><td>3 and 7</td><td>dark, sad</td></tr>
+</table>
+<p>The only difference between major and minor is the third: one fret lower makes it minor. The root and fifth stay put. (Stack a major third then a minor third = major; minor third then major third = minor.)</p>
+
+<h2>2. Why does a 6-string chord only have 3 notes?</h2>
+<p>An open chord such as E major uses six strings, but only <em>three</em> note names appear – some are simply <strong>doubled in different octaves</strong>. Every open major or minor chord is a triad with repeated notes (open 7th chords such as D7 or Am7 add a fourth note name). Learning to “see” the triad inside tells you which note is the root, which is the third (major or minor?), and what you can change.</p>
+
+<h2>3. Tutorial: deciphering an open chord</h2>
+<ol>
+<li><strong>Name each string’s note.</strong> Open strings are E A D G B E (low to high). Add one semitone per fret (E→F→F♯→G→G♯→A→A♯→B→C…).</li>
+<li><strong>Find the root.</strong> It’s the note that matches the chord name. Mark every string playing it.</li>
+<li><strong>Measure from the root.</strong> Count semitones up from the root to each other note. If the note is more than an octave above the root, subtract 12 (e.g. 16 becomes 4). Then: 0 = root, 3 = minor 3rd, 4 = major 3rd, 7 = perfect 5th.</li>
+<li><strong>Label the dots</strong> R, 3 (or ♭3), 5. You should find only those three labels.</li>
+<li><strong>Check major vs minor</strong> by looking at the third: 4 semitones above the root = major, 3 = minor.</li>
+</ol>
+<div class="panel tip"><strong>Worked example – C major (x32010).</strong><br>
+A string fret 3 = C → <strong>root</strong> (0)<br>
+D string fret 2 = E → 4 semitones above C → <strong>major 3rd</strong><br>
+G string open = G → 7 semitones → <strong>perfect 5th</strong><br>
+B string fret 1 = C → <strong>root</strong> again · high e open = E → <strong>3rd</strong> again.<br>
+Result: C-E-G = R-3-5. A major triad. The low E string is muted – it would add an E (the 3rd) below the root, which changes the voicing.</div>
+
+<h2>4. The eight chords on the fretboard</h2>
+<p class="small">High e is at the top, low E at the bottom. Fret numbers are shown under the board; ✕ = muted, ○ = open string. B and F are not true open chords – they are the barre shapes (A-shape and E-shape) that you meet next; the same R-3-5 logic applies.</p>
+<div class="key small"><span><i class="dot" style="background:#f2a93b"></i>Root (R)</span><span><i class="dot" style="background:#4fc3b0"></i>Major 3rd (3)</span><span><i class="dot" style="background:#ff7a8a"></i>Minor 3rd (♭3)</span><span><i class="dot" style="background:#a98bf0"></i>Perfect 5th (5)</span></div>
+<div class="btns"><button class="tog" id="hideBtn" onclick="toggleHide()">Quiz mode: hide interval labels</button></div>
+<div class="grid" id="chordGrid"></div>
+
+<h2>5. Triads on string sets across the whole fretboard</h2>
+<p>The open chords above use four, five or six strings. Pull out just <strong>three adjacent strings</strong> and you get a compact triad you can play anywhere on the neck. Below, each chord is split into four string sets: <strong>strings 6–4</strong> (E A D), <strong>strings 5–3</strong> (A D G), <strong>strings 4–2</strong> (D G B) and <strong>strings 3–1</strong> (G B e). Every playable R-3-5 grip within a four-fret stretch is shown across frets 0–15.</p>
+<div class="panel"><strong>Inversions.</strong> The lowest note of the grip decides the name. <em>Root position</em> has the root in the bass (R-3-5 going up), <em>1st inversion</em> has the 3rd in the bass (3-5-R) and <em>2nd inversion</em> has the 5th in the bass (5-R-3). Each set has all three, repeating every 12 frets. A ★ marks a grip that is already hiding inside the open (or barre) chord you know.</div>
+<div class="panel tip"><strong>Watch the G–B shift.</strong> A grip that moves from strings 5–3 up to strings 3–1 crosses the G–B boundary, so the note on the B string moves one fret further down the neck than the others. Strings 4–2 and 3–1 both include that boundary. The finder works this out for you.</div>
+<div class="btns" id="tsChordBtns"></div>
+<div class="key small"><span><i class="dot" style="background:#f2a93b"></i>Root (R)</span><span><i class="dot" style="background:#4fc3b0"></i>Major 3rd (3)</span><span><i class="dot" style="background:#ff7a8a"></i>Minor 3rd (♭3)</span><span><i class="dot" style="background:#a98bf0"></i>Perfect 5th (5)</span></div>
+<p class="small">Click a grip in a list to isolate it on the fretboard (white ring = bass note). Click “Show all” to see every grip again.</p>
+<div id="tsOut"></div>
+
+<h2>6. Patterns worth noticing</h2>
+<table id="sumTable"></table>
+<ul>
+<li><strong>E and Em</strong> differ by one note only: G♯ (major 3rd, G string fret 1) becomes G (♭3, open G string). One finger lifted turns major into minor.</li>
+<li><strong>A, D, E</strong> are the same story from different roots – the root usually sits on the lowest played string, which is why you can name a chord by its bass note.</li>
+<li><strong>B and F</strong> use a barre to carry the shape up the neck: the same R-3-5 pattern, just with the nut replaced by your index finger.</li>
+<li>Think of “moving a shape” as moving the root; the intervals around it never change.</li>
+</ul>
+<h3>Practice routine</h3>
+<ol>
+<li>Play each chord slowly, string by string, saying the interval aloud (“root… fifth… root… third…”).</li>
+<li>Use quiz mode: hide the labels, name them from memory, then reveal.</li>
+<li>Pick a chord and find a compact three-string triad for it in section 5 above, then play it and compare the sound with the full open chord.</li>
+<li>Change the third by one fret (major ↔ minor) and listen to the mood change – try it on E/Em, A/Am and D/Dm. (On G the third is an open string and can’t be lowered, so skip that one.)</li>
+</ol>
+</section>
+</main>
+
+<script>
+var NOTES=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+var OPEN=[40,45,50,55,59,64]; /* low E .. high e (MIDI) */
+var SNAME=['E','A','D','G','B','e'];
+var IV=[['P1','Root'],['m2','Minor 2nd'],['M2','Major 2nd'],['m3','Minor 3rd'],['M3','Major 3rd'],['P4','Perfect 4th'],['TT','Tritone'],['P5','Perfect 5th'],['m6','Minor 6th'],['M6','Major 6th'],['m7','Minor 7th'],['M7','Major 7th'],['P8','Octave']];
+var C_ROOT='#f2a93b',C_M3='#4fc3b0',C_m3='#ff7a8a',C_P5='#a98bf0';
+
+function showPage(n){
+  document.getElementById('page1').className='page'+(n==1?' on':'');
+  document.getElementById('page2').className='page'+(n==2?' on':'');
+  document.getElementById('tab1').className=(n==1?'on':'');
+  document.getElementById('tab2').className=(n==2?'on':'');
+  window.scrollTo(0,0);
+}
+
+/* ---------- generic SVG fretboard (high e at top) ---------- */
+function board(N,FW,dots,marks,clickable){
+  var L=64,T=22,SG=26,W=L+N*FW+14,H=T+5*SG+46,i,s,f,x,y,o='';
+  o+='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" style="display:block;max-width:none">';
+  o+='<rect x="'+L+'" y="'+(T-10)+'" width="'+(N*FW)+'" height="'+(5*SG+20)+'" fill="#2b2118" rx="3"/>';
+  for(i=0;i<=N;i++){x=L+i*FW;o+='<line x1="'+x+'" y1="'+(T-10)+'" x2="'+x+'" y2="'+(T+5*SG+10)+'" stroke="'+(i==0?'#ffe9cc':'#8a7a68')+'" stroke-width="'+(i==0?5:2)+'"/>';}
+  var mk=[3,5,7,9,12,15];
+  for(i=0;i<mk.length;i++){if(mk[i]<=N){x=L+(mk[i]-0.5)*FW;y=T+2.5*SG;
+    if(mk[i]==12){o+='<circle cx="'+x+'" cy="'+(y-SG)+'" r="5" fill="#3d3228"/><circle cx="'+x+'" cy="'+(y+SG)+'" r="5" fill="#3d3228"/>';}
+    else o+='<circle cx="'+x+'" cy="'+y+'" r="6" fill="#3d3228"/>';}}
+  for(s=0;s<6;s++){y=T+(5-s)*SG;o+='<line x1="'+L+'" y1="'+y+'" x2="'+(L+N*FW)+'" y2="'+y+'" stroke="#c9ccd4" stroke-width="'+(1+(6-s)*0.35)+'"/>';
+    o+='<text x="10" y="'+(y+4)+'" fill="#9aa0ad" font-size="12" font-family="sans-serif">'+SNAME[s]+'</text>';}
+  for(i=1;i<=N;i++){o+='<text x="'+(L+(i-0.5)*FW)+'" y="'+(T+5*SG+36)+'" fill="#9aa0ad" font-size="12" text-anchor="middle" font-family="sans-serif">'+i+'</text>';}
+  if(marks){for(s=0;s<6;s++){if(marks[s]){y=T+(5-s)*SG+5;o+='<text x="'+(L-16)+'" y="'+y+'" fill="'+(marks[s]=='x'?'#e5534b':'#3fb950')+'" font-size="15" text-anchor="middle" font-weight="bold" font-family="sans-serif">'+(marks[s]=='x'?'\u2715':'\u25CB')+'</text>';}}}
+  for(i=0;i<dots.length;i++){var d=dots[i];x=d.f==0?L-16:L+(d.f-0.5)*FW;y=T+(5-d.s)*SG;
+    if(d.f==0&&!clickable&&!d.show)continue;
+    o+='<circle cx="'+x+'" cy="'+y+'" r="'+(d.r||11)+'" fill="'+d.c+'" opacity="'+(d.o||1)+'" stroke="'+(d.sc||'#111215')+'" stroke-width="'+(d.sc?3:1.5)+'"/>';
+    o+='<text x="'+x+'" y="'+(y+4)+'" fill="#111215" opacity="'+(d.o||1)+'" font-size="'+(d.fs||11)+'" text-anchor="middle" font-weight="bold" font-family="sans-serif">'+d.t+'</text>';}
+  if(clickable){for(s=0;s<6;s++){for(f=0;f<=N;f++){x=f==0?L-16:L+(f-0.5)*FW;y=T+(5-s)*SG;
+    o+='<rect data-s="'+s+'" data-f="'+f+'" x="'+(x-FW/2+(f==0?8:0))+'" y="'+(y-SG/2)+'" width="'+(f==0?32:FW)+'" height="'+SG+'" fill="#ffffff" fill-opacity="0" style="cursor:pointer"/>';}}}
+  return o+'</svg>';
+}
+function pcOf(s,f){return (OPEN[s]+f)%12;}
+
+/* ---------- Page 1 explorer ---------- */
+var ivState={s:1,f:3,n:4};
+function drawIv(){
+  var dots=[],s,f,diff,root=OPEN[ivState.s]+ivState.f,hits=[],lab;
+  for(s=0;s<6;s++){for(f=0;f<=12;f++){diff=OPEN[s]+f-root;
+    if(s==ivState.s&&f==ivState.f){dots.push({s:s,f:f,t:NOTES[pcOf(s,f)],c:C_ROOT,fs:10,r:11});continue;}
+    if(ivState.n==-1){if(diff>0&&diff<=12)dots.push({s:s,f:f,t:IV[diff][0],c:'#7e8aa3',r:11,fs:10});}
+    else if(diff==ivState.n){dots.push({s:s,f:f,t:NOTES[pcOf(s,f)],c:C_M3,r:11,fs:10});hits.push(SNAME[s]+' string, fret '+f);}}}
+  document.getElementById('ivBoard').innerHTML=board(12,62,dots,null,true);
+  var rn=NOTES[root%12],h;
+  if(ivState.n==-1)h='<strong>Root: '+rn+'</strong> ('+SNAME[ivState.s]+' string, fret '+ivState.f+'). Every labelled dot shows its interval above this root.';
+  else{var tn=NOTES[(root+ivState.n)%12];
+    h='<strong>'+IV[ivState.n][1]+' ('+IV[ivState.n][0]+') = '+ivState.n+' frets.</strong> Root '+rn+' + '+IV[ivState.n][0]+' = <strong>'+tn+'</strong>.<br>'+(hits.length?'Found at: '+hits.join(' · '):'Out of range: pick a lower root.')+
+    '<br><span class="small">Same string = '+ivState.n+' frets higher. One string up = 5 frets lower (4 across G→B).</span>';}
+  document.getElementById('ivInfo').innerHTML=h;
+}
+function drawIvBtns(){
+  var o='',i;for(i=1;i<=12;i++)o+='<button data-n="'+i+'" class="'+(ivState.n==i?'on':'')+'">'+IV[i][0]+' · '+i+'</button>';
+  o+='<button data-n="-1" class="'+(ivState.n==-1?'on':'')+'">All</button>';
+  document.getElementById('ivBtns').innerHTML=o;
+}
+document.getElementById('ivBtns').onclick=function(e){var n=e.target.getAttribute('data-n');if(n!==null){ivState.n=parseInt(n,10);drawIvBtns();drawIv();}};
+document.getElementById('ivBoard').onclick=function(e){var s=e.target.getAttribute('data-s');if(s!==null){ivState.s=parseInt(s,10);ivState.f=parseInt(e.target.getAttribute('data-f'),10);drawIv();}};
+
+/* ---------- C chord build (page 1) ---------- */
+function drawBuild(){
+  var d=[{s:1,f:3,t:'R',c:C_ROOT},{s:2,f:2,t:'3',c:C_M3},{s:3,f:0,t:'5',c:C_P5},{s:4,f:1,t:'R',c:C_ROOT},{s:5,f:0,t:'3',c:C_M3}];
+  document.getElementById('cBuild').innerHTML=board(5,90,d,['x','','','','',''],false);
+}
+
+/* ---------- Page 2 chords ---------- */
+var CH=[
+ {n:'E major',r:4,m:0,fr:[0,2,2,1,0,0],note:'All six strings ring. Three roots, two fifths, one major third (G♯).'},
+ {n:'E minor',r:4,m:1,fr:[0,2,2,0,0,0],note:'Same as E but the G♯ drops to G: the third is now minor.'},
+ {n:'C major',r:0,m:0,fr:[-1,3,2,0,1,0],note:'Low E is muted; the lowest note is the root on the A string.'},
+ {n:'D major',r:2,m:0,fr:[-1,-1,0,2,3,2],note:'Only four strings: root, fifth, root, third. A bright, compact triad.'},
+ {n:'G major',r:7,m:0,fr:[3,2,0,0,0,3],note:'Three roots, two thirds (B) and one fifth (D). Very root-heavy.'},
+ {n:'B major (barre, fret 2)',r:11,m:0,fr:[-1,2,4,4,4,2],note:'A-shape barre. Index finger across fret 2 gives the root and the fifth.'},
+ {n:'F major (barre, fret 1)',r:5,m:0,fr:[1,3,3,2,1,1],note:'E-shape barre at fret 1: the E major shape moved up one fret.'},
+ {n:'A major',r:9,m:0,fr:[-1,0,2,2,2,0],note:'Open A is the root; the three fretted notes give the fifth, root and third, and the open high e doubles the fifth.'}
+];
+var hideLab=false;
+function chordDots(c){
+  var d=[],marks=['','','','','',''],s,f,pc,diff,t,col,cnt={R:0,'3':0,'5':0};
+  for(s=0;s<6;s++){f=c.fr[s];if(f<0){marks[s]='x';continue;}
+    pc=pcOf(s,f);diff=(pc-c.r+12)%12;
+    if(diff==0){t='R';col=C_ROOT;cnt.R++;}
+    else if(diff==4||diff==3){t=(diff==3?'\u266D3':'3');col=(diff==3?C_m3:C_M3);cnt['3']++;}
+    else{t='5';col=C_P5;cnt['5']++;}
+    if(f==0)marks[s]='o';
+    d.push({s:s,f:f,t:hideLab?'?':t,c:hideLab?'#7e8aa3':col,n:NOTES[pc],lab:t,fr:f});}
+  return {d:d,m:marks,cnt:cnt};
+}
+function drawChords(){
+  var o='',i,s,c,r,rows,dd,sum='<tr><th class="l">Chord</th><th>Fingering</th><th>Roots</th><th>3rds</th><th>5ths</th><th>Strings</th></tr>';
+  for(i=0;i<CH.length;i++){c=CH[i];r=chordDots(c);
+    var shown=[];for(s=0;s<r.d.length;s++){if(r.d[s].fr>0)shown.push(r.d[s]);}
+    rows='<table><tr><th class="l">String</th><th>Fret</th><th>Note</th><th>Interval</th></tr>';
+    for(s=5;s>=0;s--){}
+    for(s=0;s<6;s++){if(c.fr[s]<0)rows+='<tr><td>'+SNAME[s]+'</td><td>\u2715</td><td colspan="2" class="small">muted</td></tr>';
+      else{dd=null;for(var k=0;k<r.d.length;k++){if(r.d[k].s==s)dd=r.d[k];}
+        rows+='<tr><td>'+SNAME[s]+'</td><td>'+c.fr[s]+'</td><td>'+dd.n+'</td><td style="color:'+(hideLab?'#9aa0ad':(dd.lab=='R'?C_ROOT:(dd.lab=='5'?C_P5:(dd.lab=='3'?C_M3:C_m3))))+'"><strong>'+(hideLab?'?':dd.lab)+'</strong></td></tr>';}}
+    rows+='</table>';
+    var fing='';for(s=0;s<6;s++)fing+=(c.fr[s]<0?'x':c.fr[s]);
+    var tot=r.cnt.R+r.cnt['3']+r.cnt['5'];
+    o+='<div class="card"><h3>'+c.n+'</h3><div class="small">Root '+NOTES[c.r]+' · notes '+NOTES[c.r]+' – '+NOTES[(c.r+(c.m?3:4))%12]+' – '+NOTES[(c.r+7)%12]+' · fingering '+fing+'</div><div class="scroll">'+board(5,64,r.d,r.m,false)+'</div>'+rows+'<p class="small" style="margin:6px 0 0">'+c.note+'</p></div>';
+    sum+='<tr><td class="l">'+c.n.split(' (')[0]+'</td><td><code>'+fing+'</code></td><td>'+r.cnt.R+'</td><td>'+r.cnt['3']+' ('+(c.m?'minor':'major')+')</td><td>'+r.cnt['5']+'</td><td>'+tot+'</td></tr>';}
+  document.getElementById('chordGrid').innerHTML=o;
+  document.getElementById('sumTable').innerHTML=sum;
+}
+function toggleHide(){hideLab=!hideLab;document.getElementById('hideBtn').textContent=hideLab?'Quiz mode on: click to reveal labels':'Quiz mode: hide interval labels';drawChords();}
+
+/* ---------- Page 2: triads by string set over the full neck ---------- */
+var TS_SETS=[{n:'Strings 6\u20134 (E A D)',a:0},{n:'Strings 5\u20133 (A D G)',a:1},{n:'Strings 4\u20132 (D G B)',a:2},{n:'Strings 3\u20131 (G B e)',a:3}];
+var TS_SHORT=['E','Em','C','D','G','B','F','A'];
+var INV=['Root position','1st inversion','2nd inversion'];
+var tsChord=2,tsSel=[-1,-1,-1,-1];
+function tsTones(c){return [c.r,(c.r+(c.m?3:4))%12,(c.r+7)%12];}
+function tsLab(pc,c){var d=(pc-c.r+12)%12;return d==0?['R',C_ROOT]:(d==3?['\u266D3',C_m3]:(d==4?['3',C_M3]:['5',C_P5]));}
+function findGrips(c,a){
+  var t=tsTones(c),res=[],f0,f1,f2,fr,pcs,i,fz,mn,mx,k;
+  for(f0=0;f0<=15;f0++){for(f1=0;f1<=15;f1++){for(f2=0;f2<=15;f2++){
+    fr=[f0,f1,f2];pcs=[];for(i=0;i<3;i++)pcs.push((OPEN[a+i]+fr[i])%12);
+    if(pcs[0]==pcs[1]||pcs[1]==pcs[2]||pcs[0]==pcs[2])continue;
+    var ok=true;for(i=0;i<3;i++){if(t.indexOf(pcs[i])<0)ok=false;}
+    if(!ok)continue;
+    fz=[];for(i=0;i<3;i++){if(fr[i]>0)fz.push(fr[i]);}
+    if(fz.length){mn=Math.min.apply(null,fz);mx=Math.max.apply(null,fz);if(mx-mn>4)continue;if(fz.length<3&&mx>5)continue;}
+    var star=true;for(i=0;i<3;i++){if(c.fr[a+i]!==fr[i])star=false;}
+    res.push({fr:fr,pcs:pcs,inv:t.indexOf(pcs[0]),lo:fz.length?mn:0,star:star});
+  }}}
+  res.sort(function(x,y){return x.lo-y.lo;});
+  return res;
+}
+function drawTsBtns(){
+  var o='',i;for(i=0;i<CH.length;i++)o+='<button data-c="'+i+'" class="'+(tsChord==i?'on':'')+'">'+TS_SHORT[i]+'</button>';
+  document.getElementById('tsChordBtns').innerHTML=o;
+}
+function drawTs(){
+  var c=CH[tsChord],o='',si,gi,g,dots,map,key,k,i,sel,lab,t=tsTones(c);
+  o+='<p><strong>'+c.n.split(' (')[0]+'</strong> triad: '+NOTES[t[0]]+' \u2013 '+NOTES[t[1]]+' \u2013 '+NOTES[t[2]]+'</p>';
+  for(si=0;si<TS_SETS.length;si++){
+    var a=TS_SETS[si].a,grips=findGrips(c,a);sel=tsSel[si];
+    map={};
+    for(gi=0;gi<grips.length;gi++){g=grips[gi];
+      for(i=0;i<3;i++){key=(a+i)+'_'+g.fr[i];lab=tsLab(g.pcs[i],c);
+        var dim=(sel>=0&&sel!==gi);
+        if(!map[key]||(!dim&&map[key].o))map[key]={s:a+i,f:g.fr[i],t:lab[0],c:lab[1],show:true,o:dim?0.2:1,sc:(!dim&&sel>=0&&i==0)?'#ffffff':null};}}
+    dots=[];for(k in map)dots.push(map[k]);
+    o+='<div class="card" style="margin:14px 0"><h3>'+TS_SETS[si].n+'</h3><div class="scroll">'+board(15,52,dots,null,false)+'</div>';
+    o+='<div class="btns"><button data-set="'+si+'" data-i="-1" class="'+(sel<0?'on':'')+'">Show all</button>';
+    for(gi=0;gi<grips.length;gi++){g=grips[gi];
+      o+='<button data-set="'+si+'" data-i="'+gi+'" class="'+(sel===gi?'on':'')+'">'+(g.star?'\u2605 ':'')+INV[g.inv]+' \u00B7 frets '+g.fr.join('-')+' \u00B7 '+NOTES[g.pcs[0]]+'/'+NOTES[g.pcs[1]]+'/'+NOTES[g.pcs[2]]+'</button>';}
+    o+='</div></div>';}
+  o+='<p class="small">Frets are listed from the lowest string of the set to the highest. 0 = open string. \u2605 = this grip appears inside the fingering used for the chord above.</p>';
+  document.getElementById('tsOut').innerHTML=o;
+}
+document.getElementById('tsChordBtns').onclick=function(e){var c=e.target.getAttribute('data-c');if(c!==null){tsChord=parseInt(c,10);tsSel=[-1,-1,-1,-1];drawTsBtns();drawTs();}};
+document.getElementById('tsOut').onclick=function(e){var s=e.target.getAttribute('data-set');if(s!==null){tsSel[parseInt(s,10)]=parseInt(e.target.getAttribute('data-i'),10);drawTs();}};
+
+drawIvBtns();drawIv();drawBuild();drawChords();drawTsBtns();drawTs();
+</script>
+</body>
+</html>
